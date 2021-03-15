@@ -1,15 +1,14 @@
 # DiskAnalyzer
 
-Creati un daemon care analizeaza spatiul utilizat pe un dispozitiv de stocare incepand de la o cale data, si construiti un program utilitar care permite folosirea acestei functionalitati din linia de comanda.
-Daemonul trebuie sa analizeze spatiul ocupat recursiv, pentru fiecare director continut, indiferent de adancime.
+Created a daemon that analyzes the used space on a device starting with a given path, and utilitary that iteracts with the daemon.
 
-Utilitarul la linia de comanda se va numi ”da” si trebuie sa expuna urmatoarele functionalitati: 
-- [x] Crearea unui job de analiza, pornind de la un director parinte si o prioritate data
-    - [x] prioritatile pot fi de la 1 la 3 si indica ordinea analizei in raport cu celelate joburi (1-low, 2-normal, 3-high)
-    - [x] un job de analiza pentru un director care este deja parte dintr-un job de analiza, nu trebuie sa creeze task-uri suplimentare
-- [x] Anularea / stergerea unui job de analiza
-- [x] Intreruperea si restartarea (pause/resume) unui job de analiza
-- [x] Interogarea starii unui job de analiza (preparing, in progress, done)
+The utilitary is called `da` and has the following functionalities: 
+- [x] Create an analysis job starting from a parent directory with a given priority
+    - [x] priorities can be 1, 2, or 3 indicating the analysis order respective to the other jobs (1-low, 2-normal, 3-high)
+    - [x] an analysis job for a directory which is already part of an analysis job will not create additional tasks
+- [x] Discard / Delete an analysis job
+- [x] Pause / Resume an analysis job
+- [x] Status check for an analysis job (preparing, in progress, done)
 
 ```
    Usage: da [OPTION]... [DIR]...
@@ -24,7 +23,7 @@ Utilitarul la linia de comanda se va numi ”da” si trebuie sa expuna urmatoar
       -p, --print <id>  print analysis report for those tasks that are "done"
 ```
 
-Exemplu de folosire:
+Example:
 ```
   $> da -a /home/user/my_repo -p 3
   Created analysis task with ID ’2’ for ’/home/user/my_repo’ and priority ’high’.
